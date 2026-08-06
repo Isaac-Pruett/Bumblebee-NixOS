@@ -11,6 +11,8 @@
         extraGroups = [
           "wheel"
           "networkmanager"
+          "dialout"
+          "gpio"
         ];
         hashedPassword = "$y$j9T$347eNzn/hAlwANwJKIWt8/$VykLNHB6zt3uB2Z4d2VbrXDAIQZM/h4tBh65yGRHhV9";
         openssh.authorizedKeys.keys = [
@@ -27,7 +29,9 @@
           git
           helix
           btop
+          # uv
           tailscale
+          pciutils
           tmux
           gh
         ];
@@ -37,6 +41,11 @@
           enableCompletion = true;
           autosuggestion.enable = true;
           syntaxHighlighting.enable = true;
+          shellAliases = rec {
+            update = "sudo nixos-rebuild switch --flake .#";
+            rebuild = update;
+          };
+
         };
       };
     };
