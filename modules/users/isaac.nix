@@ -34,6 +34,7 @@
           pciutils
           tmux
           gh
+          pciutils
         ];
 
         programs.zsh = {

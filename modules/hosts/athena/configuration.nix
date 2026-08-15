@@ -11,7 +11,7 @@
         self.nixosModules.networking
         self.nixosModules.home
         self.nixosModules.isaac
-        self.nixosModules.zenohd
+        # self.nixosModules.zenohd
       ];
     };
 }
