@@ -31,10 +31,12 @@
           btop
           # uv
           tailscale
+          ripgrep
           pciutils
           tmux
           gh
           pciutils
+          networkmanager
         ];
 
         programs.zsh = {
