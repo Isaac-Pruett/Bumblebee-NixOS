@@ -36,7 +36,6 @@
         };
       };
 
-
       users.mutableUsers = false;
 
       programs.zsh.enable = true;

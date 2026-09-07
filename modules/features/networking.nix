@@ -21,8 +21,7 @@
 
       age.secrets."wireless-env".file = ../../secrets/wireless.env.age;
 
-      age.secrets."tailscale-authkey".file =
-        ../../secrets/tailscale-authkey.age;
+      age.secrets."tailscale-authkey".file = ../../secrets/tailscale-authkey.age;
 
       networking.wireless = {
         enable = true;
@@ -33,29 +32,28 @@
 
         secretsFile = wirelessSecret;
 
-        networks."Hogsmeade_5G".pskRaw =
-          "ext:HOGSMEADE_5G_PSK";
-        };
+        networks."Hogsmeade_5G".pskRaw = "ext:HOGSMEADE_5G_PSK";
+      };
 
-        systemd.services.wpa_supplicant-wlan0 = {
-          preStart = ''
-            for i in $(seq 1 30); do
-              if [ -e ${config.age.secrets."wireless-env".path} ]; then
-                exit 0
-              fi
+      systemd.services.wpa_supplicant-wlan0 = {
+        preStart = ''
+          for i in $(seq 1 30); do
+            if [ -e ${config.age.secrets."wireless-env".path} ]; then
+              exit 0
+            fi
 
-              echo "waiting for wireless-env secret..."
-              sleep 1
-            done
+            echo "waiting for wireless-env secret..."
+            sleep 1
+          done
 
-            echo "wireless-env secret did not appear"
-            exit 1
-          '';
+          echo "wireless-env secret did not appear"
+          exit 1
+        '';
 
-          restartTriggers = [
-            config.age.secrets."wireless-env".file
-          ];
-        };
+        restartTriggers = [
+          config.age.secrets."wireless-env".file
+        ];
+      };
 
       services.tailscale.enable = true;
 
