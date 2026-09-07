@@ -34,37 +34,15 @@
       };
     };
 
-    boot.kernelParams = [ "cma=256M" ];
+    # boot.kernelParams = [ "cma=256M" ];
     boot.kernelModules = [ "mt7915e" ];
 
 
     hardware.deviceTree.overlays = [
       {
-        name = "pciex1-32bit-dma";
-        dtsText = ''
-          /dts-v1/;
-          /plugin/;
-
-          / {
-            compatible = "brcm,bcm2712";
-
-            fragment@0 {
-              target = <0xffffffff>;
-              __overlay__ {
-                #address-cells = <0x03>;
-                #size-cells = <0x02>;
-
-                /* Permit DMA addresses 0x00000000–0x7fffffff. */
-                dma-ranges =
-                  <0x03000000 0x00 0x00 0x00 0x00 0x00 0x80000000>;
-              };
-            };
-
-            __fixups__ {
-              pciex1 = "/fragment@0:target:0";
-            };
-          };
-        '';
+        name = "pcie-32bit-dma-pi5";
+        dtsFile =
+          "${pkgs.raspberrypifw}/share/raspberrypi/boot/overlays/pcie-32bit-dma-pi5.dtbo";
       }
     ];
 
@@ -76,4 +54,3 @@
 
   };
 }
-
