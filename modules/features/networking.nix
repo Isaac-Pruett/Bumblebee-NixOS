@@ -19,13 +19,24 @@
       age.secrets."wireless-env".file = ../../secrets/wireless.env.age;
       age.secrets."tailscale-authkey".file = ../../secrets/tailscale-authkey.age;
 
-      systemd.services.wpa_supplicant.preStart = ''
-        for i in $(seq 1 30); do
-          [ -e ${config.age.secrets."wireless-env".path} ] && exit 0
-          sleep 1
-        done
-        exit 1
-      '';
+      systemd.services.wpa_supplicant = {
+        preStart = ''
+          for i in $(seq 1 30); do
+            if [ -e ${config.age.secrets."wireless-env".path} ]; then
+              exit 0
+            fi
+            echo "waiting for wireless-env secret..."
+            sleep 1
+          done
+
+          echo "wireless-env secret did not appear"
+          exit 1
+        '';
+
+        restartTriggers = [
+          config.age.secrets."wireless-env".file
+        ];
+      };
 
       networking.wireless = {
         enable = true;
