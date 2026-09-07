@@ -38,13 +38,6 @@
     boot.kernelModules = [ "mt7915e" ];
 
 
-    hardware.deviceTree.overlays = [
-      {
-        name = "pcie-32bit-dma-pi5";
-        dtsFile =
-          "${pkgs.raspberrypifw}/share/raspberrypi/boot/overlays/pcie-32bit-dma-pi5.dtbo";
-      }
-    ];
 
     systemd.services."serial-getty@ttyAMA3" = {
       wantedBy = lib.mkForce [];
