@@ -1,7 +1,7 @@
-# Bumblebee-NixOS/modules/hosts/athena/configuration.nix
+# Bumblebee-NixOS/modules/hosts/bumblebee/configuration.nix
 { self, inputs, ... }:
 {
-  flake.nixosModules.athenaConfiguration =
+  flake.nixosModules.bumblebeeConfiguration =
     { lib, ... }:
     {
       nixpkgs.config.allowUnfree = true;

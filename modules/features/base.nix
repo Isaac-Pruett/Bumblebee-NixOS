@@ -25,7 +25,7 @@
 
       security.sudo.wheelNeedsPassword = true;
 
-      # mDNS so `athena.local` resolves on the LAN.
+      # mDNS so `<hostname>.local` resolves on the LAN.
       services.avahi = {
         enable = true;
         nssmdns4 = true;

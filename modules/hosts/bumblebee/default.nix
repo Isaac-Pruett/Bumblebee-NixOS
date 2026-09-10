@@ -8,30 +8,30 @@ let
 in
 {
   flake.nixosConfigurations = rec {
-    athena = inputs.nixos-raspberrypi.lib.nixosSystem {
+    bumblebee = inputs.nixos-raspberrypi.lib.nixosSystem {
       inherit specialArgs;
       modules = [
         inputs.agenix.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
-        self.nixosModules.athenaConfiguration
-        self.nixosModules.athenaHardware
+        self.nixosModules.bumblebeeConfiguration
+        self.nixosModules.bumblebeeHardware
       ];
     };
 
-    default = athena;
+    default = bumblebee;
 
-    athena-installer = inputs.nixos-raspberrypi.lib.nixosInstaller {
+    bumblebee-installer = inputs.nixos-raspberrypi.lib.nixosInstaller {
       inherit specialArgs;
       modules = [
         inputs.agenix.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
-        self.nixosModules.athenaConfiguration
+        self.nixosModules.bumblebeeConfiguration
       ];
     };
   };
 
   flake.packages.aarch64-linux.sd-image =
-    self.nixosConfigurations.athena-installer.config.system.build.sdImage;
+    self.nixosConfigurations.bumblebee-installer.config.system.build.sdImage;
   flake.packages.x86_64-linux.sd-image =
-    self.nixosConfigurations.athena-installer.config.system.build.sdImage;
+    self.nixosConfigurations.bumblebee-installer.config.system.build.sdImage;
 }

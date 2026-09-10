@@ -1,7 +1,7 @@
-# hosts/athena/hardware.nix
+# hosts/bumblebee/hardware.nix
 { self, lib, ... }:
 {
-  flake.nixosModules.athenaHardware =
+  flake.nixosModules.bumblebeeHardware =
     { pkgs, lib, ... }:
     {
       fileSystems."/" = {
