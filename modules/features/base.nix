@@ -25,19 +25,6 @@
 
       security.sudo.wheelNeedsPassword = true;
 
-      # mDNS so `<hostname>.local` resolves on the LAN.
-      services.avahi = {
-        enable = true;
-        nssmdns4 = true;
-        openFirewall = true;
-
-        publish = {
-          enable = true;
-          addresses = true;
-          workstation = true;
-        };
-      };
-
       users.mutableUsers = false;
 
       programs.zsh.enable = true;
