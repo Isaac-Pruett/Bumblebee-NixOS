@@ -13,11 +13,11 @@
       tailscaleKey = config.age.secrets."tailscale-authkey".path;
     in
     {
-      age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-
       networking.hostName = hostname;
 
       networking.networkmanager.enable = lib.mkForce false;
+
+      age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
       age.secrets."wireless-env".file = ../../secrets/wireless.env.age;
 
