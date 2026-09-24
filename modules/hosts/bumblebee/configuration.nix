@@ -25,8 +25,6 @@
         frequency = 5745;
         channelWidth = "80MHz";
 
-        macAddress = "02:0a:52:0d:df:58";
-        address = "10.42.0.1/24";
       };
     };
 }
